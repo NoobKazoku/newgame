@@ -1,0 +1,40 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/component/LeftDockPanel.cs" id="1_dock"]
+[ext_resource type="Script" path="res://scripts/ui/component/HoverEffect.cs" id="99_hover"]
+
+[node name="LeftDockPanel" type="Control"]
+layout_mode = 3
+mouse_filter = 2
+script = ExtResource("1_dock")
+
+[node name="ClipRoot" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+clip_contents = true
+
+[node name="PanelRoot" type="Control" parent="ClipRoot"]
+unique_name_in_owner = true
+layout_mode = 0
+mouse_filter = 1
+
+[node name="ContentRoot" type="Control" parent="ClipRoot/PanelRoot"]
+unique_name_in_owner = true
+layout_mode = 0
+mouse_filter = 1
+
+[node name="ToggleButton" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 0
+mouse_filter = 0
+text = "◀"
+
+[node name="HoverEffect" type="Node" parent="."]
+script = ExtResource("99_hover")

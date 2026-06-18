@@ -1,0 +1,235 @@
+<Project Sdk="Godot.NET.Sdk/4.6.2">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net9.0</TargetFramework>
+        <EnableDynamicLoading>true</EnableDynamicLoading>
+        <RootNamespace>GFrameworkGodotTemplate</RootNamespace>
+        <Nullable>enable</Nullable>
+        <LangVersion>preview</LangVersion>
+        <EnableGFrameworkGlobalUsings>true</EnableGFrameworkGlobalUsings>
+        <UseLocalGFrameworkWorkspace Condition="'$(UseLocalGFrameworkWorkspace)' == '' and Exists('..\GFramework\GFramework.Game\GFramework.Game.csproj')">false</UseLocalGFrameworkWorkspace>
+        <UseLocalGFrameworkWorkspace Condition="'$(UseLocalGFrameworkWorkspace)' == ''">false</UseLocalGFrameworkWorkspace>
+    </PropertyGroup>
+    <ItemGroup>
+        <GFrameworkExcludedUsing Include="GFramework.Core.Abstractions.Query"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="scripts\core\ui\UiFactory.cs"/>
+        <Compile Remove="scenes\**"/>
+        <Compile Remove="tests\**\*.cs"/>
+        <Compile Include="script_templates\Node\SimpleSceneControllerTemplate.cs"/>
+        <Compile Remove="script_templates\**"/>
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Remove="scenes\**"/>
+        <EmbeddedResource Remove="script_templates\**"/>
+        <EmbeddedResource Include="config\**\*.yaml">
+            <LogicalName>%(Identity)</LogicalName>
+        </EmbeddedResource>
+        <EmbeddedResource Include="config\**\*.yml">
+            <LogicalName>%(Identity)</LogicalName>
+        </EmbeddedResource>
+        <EmbeddedResource Include="schemas\**\*.json">
+            <LogicalName>%(Identity)</LogicalName>
+        </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup Condition="'$(UseLocalGFrameworkWorkspace)' != 'true'">
+        <PackageReference Include="Meziantou.Analyzer" Version="3.0.98">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="GeWuYou.GFramework" Version="0.7.0"/>
+        <PackageReference Include="GeWuYou.GFramework.Core.SourceGenerators" Version="0.7.0"/>
+        <PackageReference Include="GeWuYou.GFramework.Cqrs" Version="0.7.0"/>
+        <PackageReference Include="GeWuYou.GFramework.Cqrs.Abstractions" Version="0.7.0"/>
+        <PackageReference Include="GeWuYou.GFramework.Cqrs.SourceGenerators" Version="0.7.0"/>
+        <PackageReference Include="GeWuYou.GFramework.Game.SourceGenerators" Version="0.7.0"/>
+        <PackageReference Include="GeWuYou.GFramework.Godot" Version="0.7.0"/>
+        <PackageReference Include="GeWuYou.GFramework.Godot.SourceGenerators" Version="0.7.0"/>
+    </ItemGroup>
+    <ItemGroup Condition="'$(UseLocalGFrameworkWorkspace)' == 'true'">
+        <ProjectReference Include="..\GFramework\GFramework.Core\GFramework.Core.csproj"/>
+        <ProjectReference Include="..\GFramework\GFramework.Cqrs\GFramework.Cqrs.csproj"/>
+        <ProjectReference Include="..\GFramework\GFramework.Game\GFramework.Game.csproj"/>
+        <ProjectReference Include="..\GFramework\GFramework.Godot\GFramework.Godot.csproj"/>
+        <ProjectReference Include="..\GFramework\GFramework.Core.SourceGenerators.Abstractions\GFramework.Core.SourceGenerators.Abstractions.csproj"/>
+        <ProjectReference Include="..\GFramework\GFramework.Godot.SourceGenerators.Abstractions\GFramework.Godot.SourceGenerators.Abstractions.csproj"/>
+        <ProjectReference Include="..\GFramework\GFramework.Core.SourceGenerators.Abstractions\GFramework.Core.SourceGenerators.Abstractions.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="..\GFramework\GFramework.Godot.SourceGenerators.Abstractions\GFramework.Godot.SourceGenerators.Abstractions.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="..\GFramework\GFramework.SourceGenerators.Common\GFramework.SourceGenerators.Common.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="..\GFramework\GFramework.Core.SourceGenerators\GFramework.Core.SourceGenerators.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="..\GFramework\GFramework.Cqrs.SourceGenerators\GFramework.Cqrs.SourceGenerators.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="..\GFramework\GFramework.Game.SourceGenerators\GFramework.Game.SourceGenerators.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="..\GFramework\GFramework.Godot.SourceGenerators\GFramework.Godot.SourceGenerators.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false"/>
+    </ItemGroup>
+    <ItemGroup Condition="'$(UseLocalGFrameworkWorkspace)' == 'true' and '$(EnableGFrameworkGlobalUsings)' == 'true'">
+        <Using Include="GFramework.Core.Abstractions.Architectures"/>
+        <Using Include="GFramework.Core.Abstractions.Bases"/>
+        <Using Include="GFramework.Core.Abstractions.Command"/>
+        <Using Include="GFramework.Core.Abstractions.Concurrency"/>
+        <Using Include="GFramework.Core.Abstractions.Configuration"/>
+        <Using Include="GFramework.Core.Abstractions.Controller"/>
+        <Using Include="GFramework.Core.Abstractions.Coroutine"/>
+        <Using Include="GFramework.Core.Abstractions.Cqrs"/>
+        <Using Include="GFramework.Core.Abstractions.Data"/>
+        <Using Include="GFramework.Core.Abstractions.Enums"/>
+        <Using Include="GFramework.Core.Abstractions.Environment"/>
+        <Using Include="GFramework.Core.Abstractions.Events"/>
+        <Using Include="GFramework.Core.Abstractions.Ioc"/>
+        <Using Include="GFramework.Core.Abstractions.Lifecycle"/>
+        <Using Include="GFramework.Core.Abstractions.Localization"/>
+        <Using Include="GFramework.Core.Abstractions.Logging"/>
+        <Using Include="GFramework.Core.Abstractions.Model"/>
+        <Using Include="GFramework.Core.Abstractions.Pause"/>
+        <Using Include="GFramework.Core.Abstractions.Pool"/>
+        <Using Include="GFramework.Core.Abstractions.Properties"/>
+        <Using Include="GFramework.Core.Abstractions.Property"/>
+        <Using Include="GFramework.Core.Abstractions.Query"/>
+        <Using Include="GFramework.Core.Abstractions.Registries"/>
+        <Using Include="GFramework.Core.Abstractions.Resource"/>
+        <Using Include="GFramework.Core.Abstractions.Rule"/>
+        <Using Include="GFramework.Core.Abstractions.Serializer"/>
+        <Using Include="GFramework.Core.Abstractions.State"/>
+        <Using Include="GFramework.Core.Abstractions.StateManagement"/>
+        <Using Include="GFramework.Core.Abstractions.Storage"/>
+        <Using Include="GFramework.Core.Abstractions.Systems"/>
+        <Using Include="GFramework.Core.Abstractions.Time"/>
+        <Using Include="GFramework.Core.Abstractions.Utility"/>
+        <Using Include="GFramework.Core.Abstractions.Utility.Numeric"/>
+        <Using Include="GFramework.Core.Abstractions.Versioning"/>
+        <Using Include="GFramework.Cqrs.Abstractions.Cqrs"/>
+        <Using Include="GFramework.Cqrs.Abstractions.Cqrs.Command"/>
+        <Using Include="GFramework.Cqrs.Abstractions.Cqrs.Notification"/>
+        <Using Include="GFramework.Cqrs.Abstractions.Cqrs.Query"/>
+        <Using Include="GFramework.Cqrs.Abstractions.Cqrs.Request"/>
+        <Using Include="GFramework.Game.Abstractions.Asset"/>
+        <Using Include="GFramework.Game.Abstractions.Config"/>
+        <Using Include="GFramework.Game.Abstractions.Data"/>
+        <Using Include="GFramework.Game.Abstractions.Data.Events"/>
+        <Using Include="GFramework.Game.Abstractions.Enums"/>
+        <Using Include="GFramework.Game.Abstractions.Routing"/>
+        <Using Include="GFramework.Game.Abstractions.Scene"/>
+        <Using Include="GFramework.Game.Abstractions.Setting"/>
+        <Using Include="GFramework.Game.Abstractions.Setting.Data"/>
+        <Using Include="GFramework.Game.Abstractions.Storage"/>
+        <Using Include="GFramework.Game.Abstractions.UI"/>
+        <Using Include="GFramework.Core.Architectures"/>
+        <Using Include="GFramework.Core.Command"/>
+        <Using Include="GFramework.Core.Concurrency"/>
+        <Using Include="GFramework.Core.Configuration"/>
+        <Using Include="GFramework.Core.Constants"/>
+        <Using Include="GFramework.Core.Coroutine"/>
+        <Using Include="GFramework.Core.Coroutine.Extensions"/>
+        <Using Include="GFramework.Core.Coroutine.Instructions"/>
+        <Using Include="GFramework.Core.Environment"/>
+        <Using Include="GFramework.Core.Events"/>
+        <Using Include="GFramework.Core.Events.Filters"/>
+        <Using Include="GFramework.Core.Extensions"/>
+        <Using Include="GFramework.Core.Functional"/>
+        <Using Include="GFramework.Core.Functional.Async"/>
+        <Using Include="GFramework.Core.Functional.Control"/>
+        <Using Include="GFramework.Core.Functional.Functions"/>
+        <Using Include="GFramework.Core.Functional.Pipe"/>
+        <Using Include="GFramework.Core.Ioc"/>
+        <Using Include="GFramework.Core.Localization"/>
+        <Using Include="GFramework.Core.Localization.Formatters"/>
+        <Using Include="GFramework.Core.Logging"/>
+        <Using Include="GFramework.Core.Logging.Appenders"/>
+        <Using Include="GFramework.Core.Logging.Filters"/>
+        <Using Include="GFramework.Core.Logging.Formatters"/>
+        <Using Include="GFramework.Core.Model"/>
+        <Using Include="GFramework.Core.Pause"/>
+        <Using Include="GFramework.Core.Pool"/>
+        <Using Include="GFramework.Core.Property"/>
+        <Using Include="GFramework.Core.Query"/>
+        <Using Include="GFramework.Core.Resource"/>
+        <Using Include="GFramework.Core.Rule"/>
+        <Using Include="GFramework.Core.Services"/>
+        <Using Include="GFramework.Core.Services.Modules"/>
+        <Using Include="GFramework.Core.State"/>
+        <Using Include="GFramework.Core.StateManagement"/>
+        <Using Include="GFramework.Core.Systems"/>
+        <Using Include="GFramework.Core.Time"/>
+        <Using Include="GFramework.Core.Utility"/>
+        <Using Include="GFramework.Core.Utility.Numeric"/>
+        <Using Include="GFramework.Cqrs"/>
+        <Using Include="GFramework.Cqrs.Command"/>
+        <Using Include="GFramework.Cqrs.Cqrs"/>
+        <Using Include="GFramework.Cqrs.Cqrs.Behaviors"/>
+        <Using Include="GFramework.Cqrs.Cqrs.Command"/>
+        <Using Include="GFramework.Cqrs.Cqrs.Notification"/>
+        <Using Include="GFramework.Cqrs.Cqrs.Query"/>
+        <Using Include="GFramework.Cqrs.Cqrs.Request"/>
+        <Using Include="GFramework.Cqrs.Extensions"/>
+        <Using Include="GFramework.Cqrs.Internal"/>
+        <Using Include="GFramework.Cqrs.Notification"/>
+        <Using Include="GFramework.Cqrs.Query"/>
+        <Using Include="GFramework.Cqrs.Request"/>
+        <Using Include="GFramework.Game.Config"/>
+        <Using Include="GFramework.Game.Data"/>
+        <Using Include="GFramework.Game.Extensions"/>
+        <Using Include="GFramework.Game.Routing"/>
+        <Using Include="GFramework.Game.Scene"/>
+        <Using Include="GFramework.Game.Scene.Handler"/>
+        <Using Include="GFramework.Game.Serializer"/>
+        <Using Include="GFramework.Game.Setting"/>
+        <Using Include="GFramework.Game.Setting.Events"/>
+        <Using Include="GFramework.Game.State"/>
+        <Using Include="GFramework.Game.Storage"/>
+        <Using Include="GFramework.Game.UI"/>
+        <Using Include="GFramework.Game.UI.Handler"/>
+        <Using Include="GFramework.Godot.Architectures"/>
+        <Using Include="GFramework.Godot.Config"/>
+        <Using Include="GFramework.Godot.Coroutine"/>
+        <Using Include="GFramework.Godot.Data"/>
+        <Using Include="GFramework.Godot.Extensions"/>
+        <Using Include="GFramework.Godot.Extensions.Signal"/>
+        <Using Include="GFramework.Godot.Logging"/>
+        <Using Include="GFramework.Godot.Pause"/>
+        <Using Include="GFramework.Godot.Pool"/>
+        <Using Include="GFramework.Godot.Scene"/>
+        <Using Include="GFramework.Godot.Setting"/>
+        <Using Include="GFramework.Godot.Setting.Data"/>
+        <Using Include="GFramework.Godot.Storage"/>
+        <Using Include="GFramework.Godot.UI"/>
+        <Using Remove="@(GFrameworkExcludedUsing)"/>
+    </ItemGroup>
+    <Import Project="..\GFramework\GFramework.Game.SourceGenerators\GeWuYou.GFramework.Game.SourceGenerators.targets"
+            Condition="'$(UseLocalGFrameworkWorkspace)' == 'true' and Exists('..\GFramework\GFramework.Game.SourceGenerators\GeWuYou.GFramework.Game.SourceGenerators.targets')"/>
+    <Import Project="..\GFramework\GFramework.Godot.SourceGenerators\GeWuYou.GFramework.Godot.SourceGenerators.targets"
+            Condition="'$(UseLocalGFrameworkWorkspace)' == 'true' and Exists('..\GFramework\GFramework.Godot.SourceGenerators\GeWuYou.GFramework.Godot.SourceGenerators.targets')"/>
+    <ItemGroup>
+        <Content Include=".github\dependabot.yml"/>
+        <Content Include=".github\workflows\auto-tag.yml"/>
+        <Content Include=".github\workflows\ci.yml"/>
+        <Content Include=".github\workflows\codeql.yml"/>
+        <Content Include=".github\workflows\publish.yml"/>
+        <Content Include="addons.jsonc"/>
+        <Content Include="global\README.md"/>
+        <Content Include="scripts\data\model\README.md"/>
+        <Content Include="scripts\data\README.md"/>
+        <Content Include="scripts\entities\README.md"/>
+        <Content Include="scripts\module\README.md"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="scripts\enums\game\"/>
+        <Folder Include="scripts\intro\"/>
+        <Folder Include="scripts\main_menu\"/>
+        <Folder Include="scripts\tests\"/>
+        <Folder Include="scripts\test\"/>
+    </ItemGroup>
+</Project>

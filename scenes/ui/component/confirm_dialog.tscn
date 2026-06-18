@@ -1,0 +1,118 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/component/ConfirmDialog.cs" id="1_confirm_dialog"]
+[ext_resource type="Theme" uid="uid://drg0lvsgoqfsc" path="res://resource/theme/project_theme.tres" id="2_theme"]
+[ext_resource type="Script" path="res://scripts/ui/component/HoverEffect.cs" id="99_hover"]
+
+[node name="ConfirmDialog" type="Control"]
+visible = false
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_theme")
+script = ExtResource("1_confirm_dialog")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.0156863, 0.0235294, 0.0196078, 0.78)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DialogMargin" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="DialogPanel" type="PanelContainer" parent="CenterContainer/DialogMargin"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_type_variation = &"ConfirmDialogPanel"
+
+[node name="DialogPanelMargin" type="MarginContainer" parent="CenterContainer/DialogMargin/DialogPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 26
+theme_override_constants/margin_bottom = 24
+
+[node name="DialogVBox" type="VBoxContainer" parent="CenterContainer/DialogMargin/DialogPanel/DialogPanelMargin"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="AccentBar" type="PanelContainer" parent="CenterContainer/DialogMargin/DialogPanel/DialogPanelMargin/DialogVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 4)
+layout_mode = 2
+theme_type_variation = &"ConfirmDialogPrimaryAccentBar"
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/DialogMargin/DialogPanel/DialogPanelMargin/DialogVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ConfirmDialogTitle"
+text = "确认操作"
+autowrap_mode = 3
+
+[node name="MessageLabel" type="Label" parent="CenterContainer/DialogMargin/DialogPanel/DialogPanelMargin/DialogVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_type_variation = &"ConfirmDialogMessage"
+text = "确认说明。"
+autowrap_mode = 3
+
+[node name="ButtonSpacer" type="Control" parent="CenterContainer/DialogMargin/DialogPanel/DialogPanelMargin/DialogVBox"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="ActionsRow" type="HBoxContainer" parent="CenterContainer/DialogMargin/DialogPanel/DialogPanelMargin/DialogVBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 2
+
+[node name="CancelButton" type="Button" parent="CenterContainer/DialogMargin/DialogPanel/DialogPanelMargin/DialogVBox/ActionsRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 50)
+layout_mode = 2
+theme_type_variation = &"ConfirmDialogGhostButton"
+theme_override_font_sizes/font_size = 17
+text = "取消"
+
+[node name="HoverEffect" type="Node" parent="CenterContainer/DialogMargin/DialogPanel/DialogPanelMargin/DialogVBox/ActionsRow/CancelButton"]
+script = ExtResource("99_hover")
+apply_to_descendants = false
+preset = 2
+
+[node name="ConfirmButton" type="Button" parent="CenterContainer/DialogMargin/DialogPanel/DialogPanelMargin/DialogVBox/ActionsRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(164, 50)
+layout_mode = 2
+theme_type_variation = &"ConfirmDialogDangerButton"
+theme_override_font_sizes/font_size = 17
+text = "确认"
+
+[node name="HoverEffect" type="Node" parent="CenterContainer/DialogMargin/DialogPanel/DialogPanelMargin/DialogVBox/ActionsRow/ConfirmButton"]
+script = ExtResource("99_hover")
+apply_to_descendants = false
+preset = 0

@@ -1,0 +1,106 @@
+{
+  "title": "Menu Text Config",
+  "description": "Defines reusable menu-facing text for one language.",
+  "x-gframework-config-path": "config/menu_text",
+  "type": "object",
+  "required": [
+    "id",
+    "mainMenuTitle",
+    "mainMenuNewGame",
+    "mainMenuContinue",
+    "mainMenuOptions",
+    "mainMenuCredits",
+    "mainMenuExit",
+    "creditsTitle",
+    "creditsMembers",
+    "creditsBack",
+    "pauseTitle",
+    "pauseResume",
+    "pauseSave",
+    "pauseLoad",
+    "pauseOptions",
+    "pauseMainMenu",
+    "pauseQuit",
+    "optionsTitle",
+    "optionsAudioTitle",
+    "optionsGraphicsTitle",
+    "optionsLocalizationTitle",
+    "optionsMasterVolume",
+    "optionsDisplayModeLabel",
+    "optionsResolutionLabel",
+    "optionsLanguageLabel",
+    "optionsBgmVolume",
+    "optionsSfxVolume",
+    "optionsFullscreen",
+    "optionsWindowed",
+    "optionsLanguageZh",
+    "optionsLanguageEn",
+    "optionsApply",
+    "optionsBack",
+    "optionsUnsavedChangesTitle",
+    "optionsUnsavedChangesText",
+    "optionsUnsavedApplyAndExit",
+    "optionsUnsavedDiscardAndExit",
+    "optionsSaveFailed",
+    "optionsSaved"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "enum": ["zh-cn", "en"]
+    },
+    "mainMenuTitle": { "type": "string" },
+    "mainMenuNewGame": { "type": "string" },
+    "mainMenuContinue": { "type": "string" },
+    "mainMenuOptions": { "type": "string" },
+    "mainMenuCredits": { "type": "string" },
+    "mainMenuExit": { "type": "string" },
+    "creditsTitle": { "type": "string" },
+    "creditsMembers": { "type": "string" },
+    "creditsBack": { "type": "string" },
+    "pauseTitle": { "type": "string" },
+    "pauseResume": { "type": "string" },
+    "pauseSave": {
+      "type": "string"
+    },
+    "pauseLoad": {
+      "type": "string"
+    },
+    "pauseOptions": { "type": "string" },
+    "pauseMainMenu": { "type": "string" },
+    "pauseQuit": { "type": "string" },
+    "optionsTitle": { "type": "string" },
+    "optionsAudioTitle": { "type": "string" },
+    "optionsGraphicsTitle": { "type": "string" },
+    "optionsLocalizationTitle": { "type": "string" },
+    "optionsMasterVolume": { "type": "string" },
+    "optionsDisplayModeLabel": { "type": "string" },
+    "optionsResolutionLabel": { "type": "string" },
+    "optionsLanguageLabel": { "type": "string" },
+    "optionsBgmVolume": { "type": "string" },
+    "optionsSfxVolume": { "type": "string" },
+    "optionsFullscreen": { "type": "string" },
+    "optionsWindowed": { "type": "string" },
+    "optionsLanguageZh": { "type": "string" },
+    "optionsLanguageEn": { "type": "string" },
+    "optionsApply": { "type": "string" },
+    "optionsBack": { "type": "string" },
+    "optionsUnsavedChangesTitle": {
+      "type": "string"
+    },
+    "optionsUnsavedChangesText": {
+      "type": "string"
+    },
+    "optionsUnsavedApplyAndExit": {
+      "type": "string"
+    },
+    "optionsUnsavedDiscardAndExit": {
+      "type": "string"
+    },
+    "optionsSaveFailed": { "type": "string" },
+    "optionsSaved": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
