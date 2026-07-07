@@ -1,0 +1,20 @@
+﻿[gd_scene load_steps=3 format=3 uid="uid://bqvjedw6yr22r"]
+
+[ext_resource type="PackedScene" uid="uid://b0hosqxt5i7c5" path="res://assets/model/圆卡.glb" id="1_qnn7r"]
+[ext_resource type="Script" path="res://scripts/card/Card.cs" id="1_y7l6g"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_007s3"]
+height = 0.11694336
+radius = 2.0117188
+
+[node name="Card" type="RigidBody3D" unique_id=1509985256]
+mass = 0.05
+linear_damp = 0.4
+angular_damp = 0.8
+script = ExtResource("1_y7l6g")
+
+[node name="圆卡" parent="." unique_id=2065123144 instance=ExtResource("1_qnn7r")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=100813241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00036621094, 0)
+shape = SubResource("CylinderShape3D_007s3")
